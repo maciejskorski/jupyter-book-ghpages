@@ -21,7 +21,7 @@ COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
 ENV PATH=$PATH:/usr/local/bin:/usr/local/bin/jre/bin
 ## git for deployment via GitHub Actions
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y git
 ## package for vector grrahics
 RUN apt-get install -y graphviz
 ## package with fonts for off-screen rendering (https://hub.docker.com/r/bellsoft/liberica-openjre-alpine)
@@ -33,7 +33,7 @@ RUN pip install --upgrade pip
 RUN pip install jupyter-book \
     && pip install sphinxcontrib-plantuml
 
-# clear packages cache
+# clear cached packages info
 RUN rm -rf /var/lib/apt/lists/*  \
     && rm /var/cache/apk/*
 
