@@ -15,13 +15,13 @@ RUN $JAVA_HOME/bin/jlink \
          --output ./jre
 
 # move to a lightweight image and add other dependencies
-FROM python:3.10-slim AS python_docker
+FROM alpine:python-3.10 AS python_docker
 WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
 ENV PATH=$PATH:/usr/local/bin:/usr/local/bin/jre/bin
 ## git for deployment via GitHub Actions
-RUN apt add --update git
+RUN apk add --update git
 ## package for vector grrahics
 RUN apk add --update graphviz
 ## package with fonts for off-screen rendering (https://hub.docker.com/r/bellsoft/liberica-openjre-alpine)
@@ -33,5 +33,9 @@ RUN pip install --upgrade pip
 RUN pip install psutil \
     && pip install jupyter-book \
     && pip install sphinxcontrib-plantuml
+
+# clear packages cache
+RUN rm -rf /var/lib/apt/lists/*  \
+    && rm /var/cache/apk/*
 
 LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
