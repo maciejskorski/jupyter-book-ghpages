@@ -28,7 +28,7 @@ RUN apk add --update graphviz
 RUN apk add fontconfig ttf-dejavu
 ## Sphinx and UML Python packages
 RUN pip install --upgrade pip \
-    & pip install jupyter-book \
-    & pip install sphinxcontrib-plantuml
+    && pip install jupyter-book \
+    && pip install sphinxcontrib-plantuml
 
 LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
