@@ -36,6 +36,8 @@ RUN pip install jupyter-book \
 # clear cached packages info
 RUN rm -rf /var/lib/apt/lists/*  \
     && rm -rf /var/cache/apt/* \
-    apt clean
+    && apt-get clean \
+    && apt-get autoclean \
+    && apt-get autoremove
 
 LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
