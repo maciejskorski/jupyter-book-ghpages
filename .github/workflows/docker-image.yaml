@@ -1,0 +1,36 @@
+name: docker-image
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: ["Dockerfile",".github/workflows/docker-image.yaml"]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    # Docker tags and credentials for DockerHub/GitHub Containers, customize!
+    env:
+      IMAGE_NAME: plantuml-docker
+      IMAGE_VERSION: latest
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      GITHUB_USER: ${{ github.actor }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and tag the image
+      run: |
+        docker build . \
+        --tag $DOCKER_USER/$IMAGE_NAME:$IMAGE_VERSION \
+        --tag ghcr.io/$GITHUB_USER/$IMAGE_NAME:$IMAGE_VERSION
+    - name: Publish to DockerHub
+      if: env.DOCKER_PASSWORD != ''
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        docker push $DOCKER_USER/$IMAGE_NAME:$IMAGE_VERSION
+    - name: Publish to GitHub Container registry
+      if: env.GITHUB_TOKEN != ''
+      run: |
+        docker login ghcr.io -u $GITHUB_USER -p $GITHUB_TOKEN 
+        docker push ghcr.io/$GITHUB_USER/$IMAGE_NAME:$IMAGE_VERSION
