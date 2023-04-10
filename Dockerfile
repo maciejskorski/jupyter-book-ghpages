@@ -29,9 +29,8 @@ RUN apt-get install -y graphviz
 ## linux headers
 #RUN apk add build-base
 ## Sphinx and UML Python packages
-RUN pip install --upgrade pip \
-    && pip install jupyter-book \
-    && pip install sphinxcontrib-plantuml
+RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
+
 
 # clear cached packages info
 RUN apt-get clean \
