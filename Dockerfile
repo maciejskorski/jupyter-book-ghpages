@@ -15,7 +15,7 @@ RUN $JAVA_HOME/bin/jlink \
          --output ./jre
 
 # move to a lightweight image and add other dependencies
-FROM alpine:python-3.10 AS python_docker
+FROM python:alpine3.10 AS python_docker
 WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
