@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     # Docker tags and credentials for DockerHub/GitHub Containers, customize!
     env:
-      IMAGE_NAME: plantuml-docker
-      IMAGE_VERSION: latest
+      IMAGE_NAME: jupyter-book-gh
+      IMAGE_VERSION: experimental
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       GITHUB_TOKEN: ${{ secrets.PAT }}
