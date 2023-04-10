@@ -28,12 +28,15 @@ RUN apt-get install -y graphviz
 #RUN apk add fontconfig ttf-dejavu
 ## linux headers
 #RUN apk add build-base
-## Sphinx and UML Python packages
+## install Sphinx and UML Python packages
 RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
 
 
 # clear cached packages info
 RUN apt-get clean \
-    && apt-get autoremove
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["/bin/sh"]
 
 LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
