@@ -27,7 +27,7 @@ RUN apk add --update graphviz
 ## package with fonts for off-screen rendering (https://hub.docker.com/r/bellsoft/liberica-openjre-alpine)
 RUN apk add fontconfig ttf-dejavu
 ## linux headers
-#RUN apk add build-base linux-headers
+RUN apk add build-base
 ## Sphinx and UML Python packages
 RUN pip install --upgrade pip
 RUN pip install psutil \
