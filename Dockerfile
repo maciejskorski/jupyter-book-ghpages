@@ -34,10 +34,7 @@ RUN pip install jupyter-book \
     && pip install sphinxcontrib-plantuml
 
 # clear cached packages info
-RUN rm -rf /var/lib/apt/lists/*  \
-    && rm -rf /var/cache/apt/* \
-    && apt-get clean \
-    && apt-get autoclean \
+RUN apt-get clean \
     && apt-get autoremove
 
 LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
