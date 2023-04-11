@@ -9,4 +9,27 @@ This repo provides a docker to build and deploy [jupyter-book](https://jupyterbo
 
 # How to use
 
+Use the image to build documentation and publish to GitHub Pages. A workflow example:
+```
+name: docs-docker
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    container: maciejskorski/jupyter-book-gh:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile Docs
+        run: |
+          jupyter-book build docs
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./docs/_build/html
+```
+
 See it [used live here](https://maciejskorski.github.io/software_engineering/).
