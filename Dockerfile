@@ -1,4 +1,4 @@
-# build a light Java Runtime Environment tailored to run plantuml
+# minimal Java Runtime Environment tailored to run plantuml
 FROM eclipse-temurin:17-alpine as java_docker
 WORKDIR /usr/local/bin
 COPY src/plantuml .
@@ -26,7 +26,9 @@ RUN apk update \
     && apk add --no-cache git graphviz
 ## Python packages for documentation + temporary sys packages to build them
 RUN  apk add --no-cache build-base linux-headers \
-    && pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
+    && pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml \
+    && apk del build-base linux-headers
+
 
 # clear cached packages info
 #RUN apt-get clean \
