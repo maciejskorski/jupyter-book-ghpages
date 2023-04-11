@@ -1,0 +1,6 @@
+title : Test Jupyter Book
+author: Maciej Skórski
+
+sphinx:
+  extra_extensions:
+    - sphinxcontrib.plantuml

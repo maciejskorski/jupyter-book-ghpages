@@ -13,4 +13,4 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Build Jupyter Book
-      run: jupyter-book build tests/docs
+      run: jupyter-book build ./tests/docs

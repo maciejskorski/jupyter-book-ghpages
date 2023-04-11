@@ -1,0 +1,4 @@
+format: jb-article
+root: sample_intro.md
+sections:
+- file: sample_section.md
