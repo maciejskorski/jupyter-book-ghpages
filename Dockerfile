@@ -15,22 +15,22 @@ RUN $JAVA_HOME/bin/jlink \
          --output ./jre
 
 # move to a lightweight image and add other dependencies
-FROM python:3.10-slim AS python_docker
+FROM python:3.10-alpine AS python_docker
 WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
-ENV PATH=$PATH:/usr/local/bin:/usr/local/bin/jre/bin
-## install git for deployment via GitHub Actions and vector graphics package
-RUN apt-get update \
-    && apt-get install -y git graphviz
-## Python packages for documentation
+ENV PATH=$PATH:/usr/local/bin/:/usr/local/bin/jre/bin/
+## system packages: git, vector graphics package, fonts
+RUN apk update \
+    && apk add --no-cache build-base linux-headers \
+    && apk add --no-cache fontconfig ttf-dejavu \
+    && apk add --no-cache git graphviz
+## Python packages to build documentation
 RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
 
 # clear cached packages info
-RUN apt-get clean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get clean \
+#    && apt-get autoremove \
+#    && rm -rf /var/lib/apt/lists/*
 
-CMD ["/bin/sh"]
-
-LABEL description="A lightweight image to build jupyter-book with UML extensions and deploy to github pages."
+#CMD ["/bin/sh"]
