@@ -5,11 +5,8 @@
 
 # Summary
 
-This repo provides a docker to build and deploy jupyter-book to GitHub pages, with extensions such as plantuml support. 
+This repo provides a docker to build and deploy [jupyter-book](https://jupyterbook.org/en/stable/intro.html) to GitHub pages, with extensions such as [plantuml support](https://www.plantuml.com/). 
 
 # How to use
 
-TBD
-# Note 
-
-TBD
+See it [used live here](https://maciejskorski.github.io/software_engineering/).
