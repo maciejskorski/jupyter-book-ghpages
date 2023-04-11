@@ -9,7 +9,7 @@ This repo provides a docker to build and deploy [jupyter-book](https://jupyterbo
 
 # How to use
 
-Use the image to build documentation and publish to GitHub Pages. A workflow example:
+Use the image to build documentation and publish to GitHub Pages. This is a workflow example:
 ```
 name: docs-docker
 
