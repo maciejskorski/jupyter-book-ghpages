@@ -1,11 +1,15 @@
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 ![Docker](https://img.shields.io/badge/dockerhub-images-important.svg?logo=LOGO)
+![build](https://github.com/maciejskorski/jupyter-book-gh/actions/workflows/docker-image.yaml/badge.svg)
+![tests](https://github.com/maciejskorski/jupyter-book-gh/actions/workflows/docker-test-jupyterbook.yaml/badge.svg)
 ![Docker Size](https://img.shields.io/docker/image-size/maciejskorski/jupyter-book-gh)
 ![Docker Pulls](https://img.shields.io/docker/pulls/maciejskorski/jupyter-book-gh)
 
 # Summary
 
 This repo provides a docker to build and deploy [jupyter-book](https://jupyterbook.org/en/stable/intro.html) to GitHub pages, with extensions such as [plantuml support](https://www.plantuml.com/). 
+
+The image is available on [DockerHub](https://hub.docker.com/r/maciejskorski/jupyter-book-gh) and on [GitHub Container Registry](???).
 
 # How to use
 
