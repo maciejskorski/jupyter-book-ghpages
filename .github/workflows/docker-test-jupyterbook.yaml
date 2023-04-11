@@ -12,6 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      # run jupyter-book builder in picky mode
     - name: Build Jupyter Book
-      id: build_jupyterbook
       run: jupyter-book build -W ./tests/docs
