@@ -13,4 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Build Jupyter Book
+      id: build_jupyterbook
       run: jupyter-book build ./tests/docs
+      continue-on-error: false
