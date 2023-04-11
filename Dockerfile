@@ -20,7 +20,7 @@ WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
 ENV PATH=$PATH:/usr/local/bin/:/usr/local/bin/jre/bin/
-## system packages: git, vector graphics package, fonts
+## system packages for ghpages deployment: git, vector graphics package, fonts
 RUN apk update \
     && apk add --no-cache fontconfig ttf-dejavu \
     && apk add --no-cache git graphviz
