@@ -26,7 +26,7 @@ RUN apk update \
     && apk add --no-cache git graphviz
 ## Python packages for documentation + temporary sys packages to build them
 RUN  apk add --no-cache build-base linux-headers \
-    pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
+    && pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
 
 # clear cached packages info
 #RUN apt-get clean \
