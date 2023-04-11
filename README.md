@@ -3,7 +3,7 @@
 ![Docker Size](https://img.shields.io/docker/image-size/maciejskorski/jupyter-book-gh)
 ![Docker Pulls](https://img.shields.io/docker/pulls/maciejskorski/jupyter-book-gh)
 ![build](https://github.com/maciejskorski/jupyter-book-ghpages/actions/workflows/docker-image.yaml/badge.svg)
-![tests](https://github.com/maciejskorski/jupyter-book-ghpages/actions/docker-test-jupyterbook.yaml/badge.svg)
+![tests](https://github.com/maciejskorski/jupyter-book-ghpages/actions/workflows/docker-test-jupyterbook.yaml/badge.svg)
 
 # Summary
 
