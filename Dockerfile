@@ -1,4 +1,4 @@
-# build a light Java Runtime Environment tailored to run plantuml
+# minimal Java Runtime Environment tailored to run plantuml
 FROM eclipse-temurin:17-alpine as java_docker
 WORKDIR /usr/local/bin
 COPY src/plantuml .
@@ -20,17 +20,14 @@ WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
 ENV PATH=$PATH:/usr/local/bin/:/usr/local/bin/jre/bin/
-## system packages: git, vector graphics package, fonts
+## system packages for ghpages deployment: git, vector graphics package, fonts
 RUN apk update \
-    && apk add --no-cache build-base linux-headers \
     && apk add --no-cache fontconfig ttf-dejavu \
     && apk add --no-cache git graphviz
-## Python packages to build documentation
-RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
+## Python packages for documentation + temporary sys packages to build them
+RUN  apk add --no-cache build-base linux-headers \
+    && pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml \
+    && apk del build-base linux-headers \
+    && rm -rf /var/cache/apk/*
 
-# clear cached packages info
-#RUN apt-get clean \
-#    && apt-get autoremove \
-#    && rm -rf /var/lib/apt/lists/*
-
-#CMD ["/bin/sh"]
+CMD ["/bin/sh"]
