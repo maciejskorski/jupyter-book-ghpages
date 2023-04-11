@@ -24,13 +24,8 @@ ENV PATH=$PATH:/usr/local/bin:/usr/local/bin/jre/bin
 RUN apt-get update && apt-get install -y git
 ## package for vector grrahics
 RUN apt-get install -y graphviz
-## package with fonts for off-screen rendering (https://hub.docker.com/r/bellsoft/liberica-openjre-alpine)
-#RUN apk add fontconfig ttf-dejavu
-## linux headers
-#RUN apk add build-base
-## install Sphinx and UML Python packages
+## Python packages for documentation
 RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
-
 
 # clear cached packages info
 RUN apt-get clean \
