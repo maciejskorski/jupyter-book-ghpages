@@ -12,7 +12,7 @@ jobs:
     # Docker tags and credentials for DockerHub/GitHub Containers, customize!
     env:
       IMAGE_NAME: jupyter-book-gh
-      IMAGE_VERSION: experimental
+      IMAGE_VERSION: latest
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       GITHUB_TOKEN: ${{ secrets.PAT }}
