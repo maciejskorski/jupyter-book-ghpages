@@ -20,10 +20,9 @@ WORKDIR /usr/local
 COPY --from=java_docker /usr/local/bin/plantuml* ./bin/
 COPY --from=java_docker /usr/local/bin/jre ./bin/jre
 ENV PATH=$PATH:/usr/local/bin:/usr/local/bin/jre/bin
-## git for deployment via GitHub Actions
-RUN apt-get update && apt-get install -y git
-## package for vector grrahics
-RUN apt-get install -y graphviz
+## install git for deployment via GitHub Actions and vector graphics package
+RUN apt-get update \
+    && apt-get install -y git graphviz
 ## Python packages for documentation
 RUN pip install --no-cache-dir --upgrade pip jupyter-book sphinxcontrib-plantuml
 
